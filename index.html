@@ -60,10 +60,10 @@ p {
 <script type="text/javascript">
 let dropArea = document.getElementById('drop-area')
 
-  dropArea.addEventListener('dragenter', handlerFunction, false)
+  /*dropArea.addEventListener('dragenter', handlerFunction, false)
   dropArea.addEventListener('dragleave', handlerFunction, false)
   dropArea.addEventListener('dragover', handlerFunction, false)
-  dropArea.addEventListener('drop', handlerFunction, false)
+  dropArea.addEventListener('drop', handlerFunction, false)*/
   
   ;['dragenter', 'dragover'].forEach(eventName => {
   dropArea.addEventListener(eventName, highlight, false)
@@ -80,6 +80,28 @@ function highlight(e) {
 function unhighlight(e) {
   dropArea.classList.remove('highlight')
 }
+  
+dropArea.addEventListener('drop', handleDrop, false)
+
+function handleDrop(e) {
+  let dt = e.dataTransfer
+  let files = dt.files
+
+  files.forEach(file => {previewFile(file});
+  //handleFiles(files)
+}
+  
+function previewFile(file) {
+  let reader = new FileReader()
+  reader.readAsDataURL(file)
+  reader.onloadend = function() {
+    let img = document.createElement('img')
+    img.src = reader.result
+    document.getElementById('gallery').appendChild(img)
+  }
+}
+
+
   </script>
 </body>
 </html>
