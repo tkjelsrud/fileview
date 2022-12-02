@@ -89,13 +89,26 @@ function handleDrop(e) {
   let dt = e.dataTransfer;
   let files = dt.files;
 
+  handleFiles(files);
+}
+  
+function handleFiles(files) {
   files.forEach(file => {previewFile(file)});
-  //handleFiles(files)
 }
   
 function previewFile(file) {
   let reader = new FileReader();
-  reader.readAsDataURL(file);
+  //reader.readAsDataURL(file);
+  reader.readAsText(file);
+
+  reader.onload = function() {
+    console.log(reader.result);
+  };
+
+  reader.onerror = function() {
+    console.log(reader.error);
+  };
+  
   reader.onloadend = function() {
     console.log(reader.result);
     //let img = document.createElement('img');
