@@ -64,14 +64,6 @@ let dropArea = document.getElementById('drop-area')
   dropArea.addEventListener('dragleave', handlerFunction, false)
   dropArea.addEventListener('dragover', handlerFunction, false)
   dropArea.addEventListener('drop', handlerFunction, false)*/
-  
-  ;['dragenter', 'dragover'].forEach(eventName => {
-  dropArea.addEventListener(eventName, highlight, false)
-})
-
-;['dragleave', 'drop'].forEach(eventName => {
-  dropArea.addEventListener(eventName, unhighlight, false)
-})
 
 function highlight(e) {
   dropArea.classList.add('highlight')
@@ -80,6 +72,16 @@ function highlight(e) {
 function unhighlight(e) {
   dropArea.classList.remove('highlight')
 }
+
+  ;['dragenter', 'dragover'].forEach(eventName => {
+  dropArea.addEventListener(eventName, highlight, false)
+})
+
+;['dragleave', 'drop'].forEach(eventName => {
+  dropArea.addEventListener(eventName, unhighlight, false)
+})
+
+
   
 dropArea.addEventListener('drop', handleDrop, false)
 
