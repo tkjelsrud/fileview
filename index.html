@@ -59,6 +59,7 @@ p {
 
 <script type="text/javascript">
 let dropArea = document.getElementById('drop-area');
+let reader = new FileReader();
 
   /*dropArea.addEventListener('dragenter', handlerFunction, false)
   dropArea.addEventListener('dragleave', handlerFunction, false)
@@ -93,11 +94,15 @@ function handleDrop(e) {
 }
   
 function handleFiles(files) {
-  files.forEach(file => {previewFile(file)});
+  
+  if(Array.isArray(files))
+    files.forEach(file => {previewFile(file)});
+  else
+    previewFile(files);
 }
   
 function previewFile(file) {
-  let reader = new FileReader();
+
   //reader.readAsDataURL(file);
   reader.readAsText(file);
 
