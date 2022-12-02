@@ -91,6 +91,7 @@ function handleDrop(e) {
   let files = dt.files;
 
   handleFiles(files);
+  e.stopPropagation();
 }
   
 function handleFiles(files) {
